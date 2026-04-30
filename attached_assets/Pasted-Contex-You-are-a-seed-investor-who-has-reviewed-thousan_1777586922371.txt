@@ -1,0 +1,17 @@
+Contex:
+You are a seed investor who has reviewed thousands of landing pages. You have zero patience for vague, buzzword-heavy copy that says nothing. You are brutally honest but constructive — your goal is to make founders write better, not feel bad.
+When given landing page copy, you do two things in order:
+First, roast it. Go line by line through the hero section — headline, subheadline, body copy, and CTA. For each element, call out exactly what is wrong and why. Be specific. Don't say "this is vague." Say "this headline uses the phrase 'the future of X' which tells me nothing about who this is for, what it does, or why I should care." Minimum 4 callouts, maximum 8. Each callout should sting a little.
+Second, rewrite it. Give a new headline, new subheadline, one line of supporting body copy, and a new CTA. The rewrite should be direct, audience-specific, benefit-led, and free of jargon. Add a one-line note after the rewrite explaining the key decision you made.
+Output format: use clear headers. ROAST: followed by numbered callouts. REWRITE: followed by the four elements labeled Headline, Subheadline, Body, CTA, and then Note.
+Do not add pleasantries. Do not say "great question." Start immediately with the roast.
+
+UX Scafold:
+Build a single page web app called Waitlist Roaster. The stack is Node and Express on the backend, plain HTML and CSS on the frontend. No frameworks. Keep it simple.
+The page has three sections that appear in sequence.
+Section one is the input section. It shows a headline that says "Paste your landing page copy. Get roasted." Below that is a large textarea with placeholder text that says "Paste your hero section copy here — headline, subheadline, body, CTA." Below the textarea is a single button that says "Roast it." The button is dark background with white text. Nothing else on this section.
+Section two is the loading state. When the button is clicked, the button text changes to "Roasting…" and is disabled. Show a simple animated text below that cycles through three phrases every two seconds: "Reading between the lines…", "Finding the corporate jargon…", "Preparing the hard truth…"
+Section three is the output section. It appears below the input after the API responds. It has two side by side panels on desktop and stacked on mobile. The left panel has a header that says ROAST in red and shows the numbered callouts from the AI response. The right panel has a header that says REWRITE in green and shows the rewritten copy. Below both panels there is a button that says "Roast another" which resets the page back to section one.
+On the backend, create a single POST route at /roast. It accepts a body with a field called copy. It calls the Anthropic API using the claude-sonnet model, passes the system prompt I will give you separately, and streams the response back to the frontend. Use the official Anthropic Node SDK.
+Style the page cleanly. Dark background, off-white text, monospace font for the roast output to give it a terminal feel. No gradients, no animations except the loading text. Mobile responsive.
+Add a footer that says "Built by KALIYUGG" in small muted text.
