@@ -1,62 +1,54 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
-@theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-border: hsl(var(--border));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-
-  --font-sans: var(--app-font-sans);
-  --font-mono: var(--app-font-mono);
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-:root {
-  --background: 0 0% 8%;
-  --foreground: 0 0% 90%;
-  --border: 0 0% 18%;
-  --muted-foreground: 0 0% 45%;
-
-  --app-font-sans: 'Inter', system-ui, sans-serif;
-  --app-font-mono: 'JetBrains Mono', 'Fira Mono', Menlo, monospace;
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 
-@layer base {
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: var(--app-font-sans);
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-  }
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
 }
 
-.cursor-blink {
-  display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  background: #ff4444;
-  vertical-align: middle;
-  margin-left: 2px;
-  animation: blink 1s step-start infinite;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+html {
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.fade-in {
-  animation: fadeIn 0.4s ease forwards;
+body {
+  min-height: 100vh;
+  background-color: #e8e4df;
+}
+
+textarea::placeholder {
+  color: rgba(0,0,0,0.35);
+}
+
+input::placeholder {
+  color: rgba(0,0,0,0.35);
 }

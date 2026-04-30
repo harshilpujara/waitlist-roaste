@@ -1,0 +1,67 @@
+This is a full rebuild of the Waitlist Roaster frontend. Do not touch the backend API routes. Replace everything visual — HTML, CSS, JS, fonts, background, animations, card design, and AI prompt.
+---
+FONTS
+Upload the Instrument Serif font files from the zip in the project. Register them in CSS using @font-face. Use the italic variant as the primary display font for all hero headlines and the rewrite headline. The @font-face src should point to the local files — InstrumentSerif-Italic.ttf or whichever filenames are in the zip. Apply font-family: 'Instrument Serif' to the html element as a base for serif elements.
+---
+BACKGROUND
+The background is a full-screen fixed image using the file magnific_dreamy-pastel-landscape.png uploaded to the project. Set it as: background-image url of that file, background-size cover, background-position center, background-attachment fixed on the body. On top of the image add a fixed overlay div that covers the full viewport: background rgba(255,255,255,0.18), backdrop-filter blur(2px). This softens the image slightly so text reads cleanly while keeping the dreamy depth visible. The overlay sits behind all content.
+When the results section is shown, inject an additional translucent panel behind the two columns — a full-width div with background rgba(255,255,255,0.12), backdrop-filter blur(30px), border-radius 28px, padding 32px, border 1px solid rgba(255,255,255,0.25). This creates a frosted glass canvas that the cards sit on top of, so results feel grounded against the busy background.
+---
+NAV
+Frosted glass pill centered at top. background rgba(255,255,255,0.22), backdrop-filter blur(20px), border 1px solid rgba(255,255,255,0.35), border-radius 999px, padding 10px 20px. Logo text in Instrument Serif italic, dark color #1a1a1a. New Roast button: background #1a1a1a, color white, border-radius 999px, padding 8px 20px, font-size 13px.
+---
+HERO SECTION
+Centered. Small label above in uppercase tracking-widest, font-size 11px, color rgba(0,0,0,0.45), letter-spacing 0.12em that says WAITLIST ROASTER. Main headline in Instrument Serif italic, font-size 72px, color #1a1a1a, line-height 1.1, that says: Your landing page is lying. Subtext below in sans-serif, font-size 16px, color rgba(0,0,0,0.5), line-height 1.6: Paste your copy. A seed investor reads it. No mercy.
+---
+INPUT CARD
+White card, background rgba(255,255,255,0.88), backdrop-filter blur(20px), border-radius 20px, border 1px solid rgba(255,255,255,0.6), box-shadow 0 8px 40px rgba(0,0,0,0.08), padding 24px. Textarea inside with no border, no outline, background transparent, font-size 15px, color #1a1a1a, placeholder: Paste your hero — headline, subheadline, body, CTA. Min-height 100px. Bottom row of the card is a flex row: left side shows character count in rgba(0,0,0,0.3) font-size 12px, right side has the dark circle submit button 42px diameter background #1a1a1a with a white arrow-up SVG icon. On textarea focus the card border transitions to rgba(0,0,0,0.2) with box-shadow 0 0 0 3px rgba(0,0,0,0.06) over 0.2s.
+---
+LOADING STATE
+The submit button arrow rotates 45deg over 0.2s. Below the card a glass pill appears: background rgba(255,255,255,0.3), backdrop-filter blur(12px), border 1px solid rgba(255,255,255,0.4), border-radius 999px, padding 8px 20px, font-size 13px, color rgba(0,0,0,0.6). It crossfades between three phrases every 2s: Scanning for corporate jargon... then Finding the empty promises... then A seed investor is not impressed...
+---
+SCORE CARD — appears first above the two columns
+A wide single card spanning full width of the results area. Background rgba(255,255,255,0.2), backdrop-filter blur(20px), border 1px solid rgba(255,255,255,0.35), border-radius 20px, padding 24px 32px, margin-bottom 20px.
+Left side of the card: a large number — the Clarity Score from 0 to 100 — in Instrument Serif italic, font-size 64px, color #1a1a1a. Next to it a label in two lines: first line says CLARITY SCORE in uppercase 11px tracking-wide rgba(0,0,0,0.4), second line is a verdict string based on the score — 0 to 30 says Painful, 31 to 55 says Needs work, 56 to 75 says Getting there, 76 to 100 says Sharp. The verdict is in font-size 18px color #1a1a1a font-weight 500.
+Right side of the card floated right: a short 2-3 line summary of what the investor's overall read is — pulled from the SUMMARY section of the AI response. Font-size 14px, color rgba(0,0,0,0.6), line-height 1.7, max-width 340px, font-style italic.
+Score is calculated by the frontend from the AI response: start at 100, subtract points based on number of problems flagged (each problem minus 12), add back points for each praise acknowledged (each praise plus 8). Clamp between 5 and 95.
+---
+RESULTS LAYOUT
+Below the score card, two columns side by side on desktop, stacked on mobile, gap 20px.
+---
+LEFT COLUMN — Problems and Praise
+Column header: 5 PROBLEMS in uppercase 11px, color a warm terracotta rgba(180,80,60,0.9), letter-spacing 0.1em.
+Each problem card: background rgba(255,255,255,0.18), backdrop-filter blur(16px), border 1px solid rgba(255,255,255,0.3), border-radius 16px, padding 16px 20px, margin-bottom 10px. Inside: verdict text in #1a1a1a, font-size 14px, font-weight 500, line-height 1.4. Explanation below in rgba(0,0,0,0.5), font-size 13px, margin-top 6px, line-height 1.5. Top-right corner: copy icon button, opacity 0 by default, transitions to opacity 1 on card hover over 0.15s. On copy click it shows a checkmark for 1.5s then reverts, with a scale pop animation: scale 1 to 1.2 to 1 over 0.2s.
+Below the 5 problem cards, if there are any praise items, show a section header: WHAT WORKS in uppercase 11px, color rgba(60,140,90,0.9), letter-spacing 0.1em, margin-top 20px.
+Each praise card: same glass card style but border color rgba(60,140,90,0.25). Verdict text in the same dark color. A small leaf or checkmark character before the verdict in green rgba(60,140,90,0.8). Copy icon in top right same behavior.
+---
+RIGHT COLUMN — Rewrite
+Column header: REWRITE in uppercase 11px, color rgba(60,140,90,0.9), letter-spacing 0.1em.
+Single tall glass card: background rgba(255,255,255,0.22), backdrop-filter blur(24px), border 1px solid rgba(255,255,255,0.4), border-radius 20px, padding 28px 24px.
+Top right of card: Copy all pill button — background rgba(0,0,0,0.08), border 1px solid rgba(0,0,0,0.12), border-radius 999px, padding 4px 14px, font-size 12px, color rgba(0,0,0,0.6). On click shows Copied in green for 1.5s.
+Inside the card lay it out like a real hero section: Headline in Instrument Serif italic, font-size 28px, color #1a1a1a, line-height 1.25. Subheadline in sans-serif, font-size 15px, color rgba(0,0,0,0.65), margin-top 10px, line-height 1.6. Body text if present in font-size 13px, color rgba(0,0,0,0.45), margin-top 8px. CTA as a real button — background #1a1a1a, color white, border-radius 999px, padding 10px 24px, font-size 14px, font-weight 500, margin-top 20px, display inline-block, cursor pointer. On hover CTA shifts up 2px, box-shadow 0 4px 16px rgba(0,0,0,0.15) appears over 0.15s.
+Thin divider below CTA: border-top 1px solid rgba(0,0,0,0.08), margin-top 20px. Below it the Decision note in font-size 12px, font-style italic, color rgba(0,0,0,0.4), line-height 1.6.
+---
+DYNAMIC PAGE TITLE
+When the results are shown, change the browser tab title using document.title to a 4-5 word personalised roast summary pulled from the TITLE field of the AI response. When the user clicks New Roast or Roast another, reset document.title to Waitlist Roaster.
+---
+ANIMATIONS
+On page load: label fades up first (translateY 16px to 0, opacity 0 to 1, 0.5s ease-out), then headline (0.15s delay), then subtext (0.25s delay), then input card (0.35s delay). All use the same fade-up keyframe.
+On results appear: score card fades up first over 0.4s. Then left column header fades in. Then each card in the left column staggers in with 80ms between each, fade up from 10px. Then right column header and rewrite card slide in from translateX 16px to 0 with opacity 0 to 1 over 0.4s.
+Card hover: border brightens from rgba(255,255,255,0.3) to rgba(255,255,255,0.55), card scales to 1.012, transition 0.15s ease-out.
+Roast another button: on hover text shifts right 3px over 0.15s, background brightens.
+Scroll progress bar: 2px fixed line at very top of viewport, fills left to right on scroll, gradient from terracotta to green matching the column header colors.
+---
+AI SYSTEM PROMPT — replace the existing system prompt with this:
+You are a seed investor who has reviewed thousands of landing pages. You have strong opinions and zero tolerance for copy that sounds like it was written by a committee. But you are also fair — when something works, you say so. Your job is to give founders the honest read they would never get from their team.
+Given landing page copy, return a structured response with these exact sections in this order:
+TITLE: A 4 to 5 word brutal but witty summary of the copy's core failure. This will be shown as the browser tab title. Example: Streamline This Into The Bin. No punctuation at the end.
+SUMMARY: Two sentences max. Your overall read as an investor. Honest, specific, not kind but not cruel. This appears next to their score.
+PRAISE: One to three things that actually work. If nothing works write one line acknowledging what the intent was even if the execution failed. Format each as: WHAT // one sentence explanation. If everything is genuinely bad write NONE // This copy has no salvageable elements, which is rare but possible.
+PROBLEMS: Exactly 5 callouts. Each as: VERDICT // EXPLANATION. Verdict is one line max 15 words, sharp and specific. Explanation is one sentence. No asterisks, no markdown, no dashes.
+REWRITE:
+Headline: under 10 words, names a real pain or a real person
+Subheadline: one sentence, adds one new idea the headline did not say
+Body: one sentence or leave blank
+CTA: 2 to 4 words starting with a verb
+Decision: one sentence on the single biggest strategic change you made
+Return plain text only. No asterisks, no markdown, no dashes as bullets. Use line breaks between items. The PRAISE and PROBLEMS sections must use the double slash separator between verdict and explanation.
